@@ -1,0 +1,13 @@
+.formPanel{
+	border: solid 1px #797979;
+	padding: 10px 10px;
+	background-color: #fff;
+	border-radius: 2px;
+	box-shadow: 1px 1px 0px 0px #1b1919;
+}
+.mpanel{
+	display: flex;
+    justify-content: center;
+    min-height: 260px;
+    align-items: center;
+}

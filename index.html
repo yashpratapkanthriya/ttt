@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html >
+ <head>
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+   </head>
+<body>
+
+	<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #000000!important;font-family: neue-l;">
+  <!-- Brand/logo -->
+  <a class="navbar-brand" href="#">TempConn</a>
+  
+  <!-- Links -->
+  <ul class="navbar-nav" style="display: none;">
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 2</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link 3</a>
+    </li>
+  </ul>
+</nav>
+<div class="container-fluid" ng-app="myApp" ng-controller="formCtrl">
+
+ <div class="row"  style="display: block;"> 
+    <div class="col mpanel" style="background-color:rgb(41, 128, 185);">
+    	<div class="formPanel col-4">
+    		<form>
+		  <div class="form-group">
+		    <label for="text">Number:</label>
+		    <input type="text" class="form-control" id="email" ng-model="num.a">
+		  </div>
+		  <button class="btn btn-primary" ng-click="addItem()">Submit</button>
+		</form>
+		</div>
+    </div>
+    <div class="col mpanel" style=" align-items: unset;">
+    <div class="" style="margin: 25px 10px;">	
+    	<table  class="table table-striped" style=" text-align: center;">
+		<thead>
+			<th>S. no.</th>
+			<th>Letter</th>
+			<th>Frequency of Occurrence</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="x in my ">
+				<td>{{$index+1}}</td>
+				<td>{{x.key}}</td>
+				<td>{{x.value}} Times</td>
+			</tr>
+		</tbody>
+		</table>
+  	</div>
+    </div>
+</div>
+</div>
+</body>
+<script>
+var app = angular.module('myApp', []);
+app.controller('formCtrl', function($scope,$http) {
+  $scope.num = $scope.num;
+  $scope.url = 'index.php';
+
+  $scope.addItem = function (){
+   $http.post($scope.url, {"num": $scope.num.a}).
+                        success(function (data, status) {
+                            $scope.status = status;
+                            $scope.data = data;
+                            $scope.result = data; // Show result from server in our <pre></pre> element
+                            console.log(angular.fromJson(data.data));
+                           //  $scope.my = angular.toJson(data);
+                           $scope.my = angular.fromJson(data.data);
+
+                        })
+  }
+});
+</script>
+</html>
